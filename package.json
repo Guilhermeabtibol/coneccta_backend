@@ -2,10 +2,11 @@
   "name": "connecta-backend",
   "version": "1.0.0",
   "description": "",
+  "main": "./dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "start": "npm run build && node dist/index.js",
+    "start": "node dist/index.js",
     "prisma:migrate": "npx prisma migrate dev --name init-connecta-db",
     "prisma:seed": "ts-node prisma/seed.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

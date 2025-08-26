@@ -1,8 +1,8 @@
 // src/controllers/authController.ts
-import type { Request, Response } from 'express';
-import type { PrismaClient } from '@prisma/client';
-import type bcrypt from 'bcryptjs';
-import type jwt from 'jsonwebtoken';
+import  { Request, Response } from 'express';
+import  { PrismaClient } from '@prisma/client';
+import  bcrypt from 'bcryptjs';
+import  jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'seu_segredo_muito_seguro_e_secreto';

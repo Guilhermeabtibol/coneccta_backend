@@ -1,6 +1,6 @@
 // src/middleware/auth.ts
-import type { Request, Response, NextFunction } from 'express';
-import type jwt from 'jsonwebtoken';
+import  { Request, Response, NextFunction } from 'express';
+import  jwt from 'jsonwebtoken';
 
 interface UserPayload {
     userId: number;

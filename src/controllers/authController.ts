@@ -1,11 +1,10 @@
-// src/controllers/authController.ts
-import  { Request, Response } from 'express';
-import  { PrismaClient } from '@prisma/client';
-import  bcrypt from 'bcryptjs';
-import  jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || 'seu_segredo_muito_seguro_e_secreto';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Validação de senha: mínimo de 6 caracteres, uma letra maiúscula e um caractere especial
 const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
@@ -33,7 +32,7 @@ export const registerUser = async (req: Request, res: Response) => {
     res.status(201).json({ message: "Usuário registrado com sucesso" });
   } catch (error) {
       // Adiciona um tratamento de erro para e-mail duplicado
-      if (error.code === 'P2002') {
+      if (error instanceof Error && 'code' in error && error.code === 'P2002') {
           return res.status(409).json({ error: 'Este e-mail já está em uso.' });
       }
     res.status(500).json({ error: "Não foi possível registrar o usuário." });
@@ -57,6 +56,11 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Credenciais inválidas." });
     }
     
+    // VERIFICA SE O JWT_SECRET ESTÁ DEFINIDO antes de usar.
+    if (!JWT_SECRET) {
+      return res.status(500).json({ error: "Erro de configuração: JWT secret não está definido." });
+    }
+
     // Gera o JWT com o id e a função (role) do usuário
     const token = jwt.sign({ userId: user.id, userRole: user.role }, JWT_SECRET, { expiresIn: '1h' });
     

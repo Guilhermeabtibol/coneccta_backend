@@ -1,28 +1,20 @@
 {
   "compilerOptions": {
-    "target": "esnext", // Define o alvo para a versão mais recente
-    "module": "nodenext", // Usa o sistema de módulos do Node.js mais recente
-    "moduleResolution": "nodenext", // Resolve módulos como o Node.js mais recente
-
-    "rootDir": "./src",
-    "outDir": "./dist",
-
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
-    "isolatedModules": true,
+    "target": "ES2022",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true, // Ativa todas as verificações rigorosas de tipos
+    "strict": true,
     "skipLibCheck": true,
-    
-    // Configurações para um projeto de backend
-    "jsx": "react", // ou remova se não for usar React
-    "verbatimModuleSyntax": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true
-  }
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "src/@types/express/index.d.ts"
+  ]
 }

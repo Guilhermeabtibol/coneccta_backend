@@ -4,7 +4,6 @@
   "description": "",
   "type": "commonjs",
   "main": "./dist/index.js",
-"module": "type",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",

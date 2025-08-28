@@ -13,9 +13,7 @@ const PORT = process.env.PORT || 3000;
 // Inicialize o cliente Prisma
 const prisma = new PrismaClient();
 
-// Use o middleware CORS
-// Isso permite todas as origens por padrão. Para produção, você deve
-// especificar a origem exata do seu frontend (por exemplo, origin: 'https://seufrotend.com')
+// Use o middleware CORS antes de qualquer outra coisa
 app.use(cors());
 
 // Middleware para parsear corpos JSON
